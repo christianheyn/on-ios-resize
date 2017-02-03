@@ -1,7 +1,7 @@
 # on-ios-resize
 **`window.oniosresize`**
 
-Fires event everytime **after the window _height_ resized**, also on show or hide ios-adress-bar on mobile safari/chrome.
+Fires an event everytime **after the window _height_ resized**, also on show or hide adress-bar on mobile safari/chrome.
 
 ## Install
 ```sh
