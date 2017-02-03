@@ -4,70 +4,70 @@
         module.exports = factory;
     }
 }(function () {
-	var currentHeight = 0,
-		timeout,
-		callbackCollection = [];
+    var currentHeight = 0,
+        timeout,
+        callbackCollection = [];
 
-	if (typeof window.oniosresize !== 'undefined') {
-		return false;
-	}
+    if (typeof window.oniosresize !== 'undefined') {
+        return false;
+    }
 
-	Object.defineProperty(window,'oniosresize',{
-	    set: function(callback){
-	        if (typeof callback === 'function') {
-	        	callbackCollection.push(callback);
-	        }
-	    },
+    Object.defineProperty(window,'oniosresize',{
+        set: function(callback){
+            if (typeof callback === 'function') {
+                callbackCollection.push(callback);
+            }
+        },
 
-	    get: function() {
-	    	return 'Use window.oniosresize = function() {/* ... */};';
-	    }
-	});
+        get: function() {
+            return 'Use window.oniosresize = function() {/* ... */};';
+        }
+    });
 
-	var tester = document.createElement('div'),
-		checkResize = function () {
-			var heightNow = tester.offsetHeight;
+    var tester = document.createElement('div'),
+        checkResize = function () {
+            var heightNow = tester.offsetHeight;
 
-			// is bigger
-			if (heightNow > currentHeight) {
-				currentHeight = heightNow;
-				return 1;
-			}
+            // is bigger
+            if (heightNow > currentHeight) {
+                currentHeight = heightNow;
+                return 1;
+            }
 
-			// is smaller
-			if (heightNow < currentHeight) {
-				currentHeight = heightNow;
-				return -1;
-			}
+            // is smaller
+            if (heightNow < currentHeight) {
+                currentHeight = heightNow;
+                return -1;
+            }
 
-			return false;
-		};
+            return false;
+        };
 
-	tester.setAttribute('style', [
-		'position:fixed;',
-		'display: block;',
-		'top: 0;',
-		'bottom: 0;',
-	].join(''));
+    tester.setAttribute('style', [
+        'position:fixed;',
+        'display: block;',
+        'top: 0;',
+        'bottom: 0;',
+    ].join(''));
 
-	document.body.appendChild(tester);
-	currentHeight = tester.offsetHeight;
+    document.body.appendChild(tester);
+    currentHeight = tester.offsetHeight;
 
-	window.onscroll = function () {
-		window.clearTimeout(timeout);
-		timeout = window.setTimeout(function () {
-			var i = 0,
-				result = checkResize();
+    window.onscroll = function () {
+        window.clearTimeout(timeout);
+        timeout = window.setTimeout(function () {
+            var i = 0,
+                result = checkResize();
 
-			if (typeof result === 'number') {
-				for (i; i < callbackCollection.length; i += 1) {
-					if ( typeof callbackCollection[i] === 'function') {
-						callbackCollection[i](result);
-					}
-				}
-			}
-		}, 100);
-	};
+            if (typeof result === 'number') {
+                for (i; i < callbackCollection.length; i += 1) {
+                    if ( typeof callbackCollection[i] === 'function') {
+                        callbackCollection[i](result);
+                    }
+                }
+            }
+        }, 100);
+    };
 
-	return window.oniosresize;
+    return window.oniosresize;
 }()));

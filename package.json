@@ -1,6 +1,6 @@
 {
   "name": "on-ios-resize",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Fires an event everytime after the window height resized, also on show or hide adress-bar on mobile safari/chrome.",
   "main": "index.js",
   "scripts": {
