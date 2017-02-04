@@ -31,24 +31,31 @@
             // is bigger
             if (heightNow > currentHeight) {
                 currentHeight = heightNow;
-                return 1;
+                return {
+                    direction: 1,
+                    viewHeight: heightNow
+                };
             }
 
             // is smaller
             if (heightNow < currentHeight) {
                 currentHeight = heightNow;
-                return -1;
+                return {
+                    direction: -1,
+                    viewHeight: heightNow
+                };
             }
 
             return false;
         };
 
     tester.setAttribute('style', [
-        'position:fixed;',
-        'display: block;',
-        'top: 0;',
-        'bottom: 0;',
-    ].join(''));
+        'position:fixed',
+        'display: block',
+        'top: 0',
+        'bottom: 0',
+        'z-index: -1'
+    ].join(';'));
 
     document.body.appendChild(tester);
     currentHeight = tester.offsetHeight;
@@ -62,7 +69,7 @@
             if (typeof result === 'number') {
                 for (i; i < callbackCollection.length; i += 1) {
                     if ( typeof callbackCollection[i] === 'function') {
-                        callbackCollection[i](result);
+                        callbackCollection[i](result.direction, result.viewHeight);
                     }
                 }
             }

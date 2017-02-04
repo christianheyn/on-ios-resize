@@ -1,7 +1,7 @@
 # on-ios-resize
 **`window.oniosresize`**
 
-Fires an event everytime **after the window _height_ resized**, also on show or hide adress-bar on mobile safari/chrome.
+Fires an event every time **after the window height resizes**, also after show/hide of adress-bar on mobile safari/chrome.
 
 ## Install
 ```sh
@@ -13,16 +13,17 @@ $ npm install on-ios-resize --save
 ```js
 require('on-ios-resize');
 
-window.oniosresize = function (direction) {
-	console.log(direction);
+window.oniosresize = function (direction, viewHeight) {
+	console.log(direction, viewHeight);
 };
 ```
 
-Parameter `direction` is `1` if window height becomes bigger, `-1` if window height becomes smaller.
+Parameter `direction` is `1` when window height increases, `-1` when window height decreases.
 
 
 #### Tested?
-If you tested this package and it dosn't worked for you, please create an issue [here](https://github.com/christianheyn/on-ios-resize/issues).
+
+If you have tested this package and it didn’t work for you, please create an issue [here](https://github.com/christianheyn/on-ios-resize/issues).
 
 ___
 
