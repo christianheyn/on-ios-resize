@@ -66,7 +66,7 @@
             var i = 0,
                 result = checkResize();
 
-            if (typeof result === 'number') {
+            if (typeof result === 'object') {
                 for (i; i < callbackCollection.length; i += 1) {
                     if ( typeof callbackCollection[i] === 'function') {
                         callbackCollection[i](result.direction, result.viewHeight);
